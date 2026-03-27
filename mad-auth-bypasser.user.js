@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAD Auth Bypasser
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Instant login bypass - patches validation, auto-clicks
 // @match        https://matematica-al-dini.netlify.app/*
 // @author       Anonymous
@@ -18,6 +18,8 @@
   };
 
   new MutationObserver(() => {
+    document.querySelector('#app > div.app > div.popup:first-child')?.remove();
+
     if (clicked) return;
     const btn = [...document.querySelectorAll('button')]
       .find(b => b.textContent.trim() === 'ACCEDI');
