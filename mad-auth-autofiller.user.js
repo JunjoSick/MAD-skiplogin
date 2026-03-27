@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MAD Auth Autofiller
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Automatically fills institutional email on login pages.
 // @author       Anonymous
 // @match        https://matematica-al-dini.netlify.app/*
@@ -46,7 +46,13 @@
     );
   }
 
+  function dismissPopup() {
+    document.querySelector("#app > div.app > div.popup:first-child")?.remove();
+  }
+
   function attemptFill() {
+    dismissPopup();
+
     if (!isLoginPage()) return;
 
     const btn = getAccediButton();
